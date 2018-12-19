@@ -2,6 +2,17 @@
 
 A basic morse code trainer intended for experimentation.
 
+Features:
+
+* Memorise morse code by progressive learning similar to Koch method
+* Adjustable parameters
+* Timing
+
+Non-Features:
+
+* Full text playback - this is already well-catered for in other projects
+* In general, no reproduction of features already implemented in other projects
+
 
 # Install
 
