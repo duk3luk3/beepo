@@ -101,7 +101,9 @@ so that I can then move on to copy phrases.
 Acknowledgements for public domain licensed source material:
 
 * `setup.py` template: https://github.com/kennethreitz/setup.py
-* Sound files used / derived from: https://commons.wikimedia.org/wiki/Category:Audio_files_of_Morse_code_-_alphabet
+* Morse code sound files used / derived from: https://commons.wikimedia.org/wiki/Category:Audio_files_of_Morse_code_-_alphabet
+* System sounds:
+  * http://soundbible.com/1540-Computer-Error-Alert.html
 
 This project is also released into the public domain with no reservations.
 

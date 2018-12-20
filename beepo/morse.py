@@ -6,8 +6,12 @@ from time import sleep
 
 CODEFILE = 'res/code.json'
 
-DITFILE = 'oggs/dit.ogg'
-DAHFILE = 'oggs/dah.ogg'
+SOUNDFILES = {
+        '.': 'oggs/dit.ogg',
+        '-': 'oggs/dah.ogg',
+        '?': 'oggs/chime.wav',
+        '!': 'oggs/error.wav'
+}
 
 KOCH_SEQ = 'KMRSUAPTLOWI.NJEF0Y,VG5/Q9ZH38B?427C1D6X'
 
@@ -23,25 +27,20 @@ def play_init():
 
 
 def load_sounds():
-    dit = pygame.mixer.Sound(DITFILE)
-    dah = pygame.mixer.Sound(DAHFILE)
+    return {k: pygame.mixer.Sound(f) for k, f in SOUNDFILES.items()}
 
-    return {
-            'dit': dit,
-            'dah': dah
-    }
+
+def play_sound(sounds, symbol):
+    sounds[symbol].play()
+    while pygame.mixer.get_busy() != 0:
+        sleep(0.05)
 
 
 def play_code(code_table, sounds, code):
     morse = code_table[code.lower()]
 
     for m in morse:
-        if m == '.':
-            sounds['dit'].play()
-        elif m == '-':
-            sounds['dah'].play()
-        while pygame.mixer.get_busy() != 0:
-            sleep(0.05)
+        play_sound(sounds, m)
 
 
 def koch_letter(letter_span, last=None):
