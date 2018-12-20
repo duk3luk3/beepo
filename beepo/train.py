@@ -3,7 +3,7 @@ import morse
 import time
 
 koch_span = 4
-cpm=15*4
+cpm = 15 * 4
 
 morse.play_init()
 
@@ -41,11 +41,8 @@ while True:
             ss = '... {0} / {1}'.format(dt, 60/cpm)
     all_letters = all_letters + 1
 
-
-
     print(letter + ss)
 
     if all_letters % 10 == 0:
         corr_perc = correct_letters / all_letters * 100
         print("Performance: {0}%".format(corr_perc))
-
