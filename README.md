@@ -31,9 +31,24 @@ pip install -r requirements.txt
 
 # Run
 
+Codestyle:
+
+```
+pytest --codestyle beepo
+```
+
+Smoke test:
+
 ```
 python test.py
 ```
+
+Training:
+
+```
+python beepo/train.py
+```
+
 
 # Why
 
