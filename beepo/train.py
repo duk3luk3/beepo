@@ -1,16 +1,15 @@
 import sys
-import morse
+import sinegen
 import time
 
 koch_span = 4
 cpm = 15 * 4
+farnsworth_speed = 15
+wpm = 12
 
-morse.play_init()
+code_table = sinegen.load_codetable()
 
-code_table = morse.load_codetable()
-sounds = morse.load_sounds()
-
-letters = morse.KOCH_SEQ[0:koch_span]
+letters = sinegen.KOCH_SEQ[0:koch_span]
 
 for letter in letters:
     print('{0}: {1}'.format(letter, code_table[letter.lower()]))
@@ -22,9 +21,9 @@ correct_letters = 0
 all_letters = 0
 
 while True:
-    letter = morse.koch_letter(koch_span, letter)
+    letter = sinegen.koch_letter(koch_span, letter)
 
-    morse.play_code(code_table, sounds, letter)
+    sinegen.play_code(code_table, letter, farnsworth_speed, wpm)
 
     tm = time.time()
 
