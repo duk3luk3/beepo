@@ -3,9 +3,9 @@ import sinegen
 import time
 
 koch_span = 4
+wpm = 15
 cpm = 15 * 4
-farnsworth_speed = 15
-wpm = 12
+tone_frequency = 800
 
 code_table = sinegen.load_codetable()
 
@@ -23,21 +23,24 @@ all_letters = 0
 while True:
     letter = sinegen.koch_letter(koch_span, letter)
 
-    sinegen.play_code(code_table, letter, farnsworth_speed, wpm)
+    sinegen.play_code(code_table, letter, tone_frequency, wpm)
 
     tm = time.time()
 
     letter_read = input()
 
     ss = '!'
-
+    tone_frequency = 400
+# Using tones as audio feedback: lower for incorrect, higher for slow
     if letter.lower() == letter_read.lower():
         dt = time.time() - tm
         if dt <= (60 / cpm):
             ss = '.'
+            tone_frequency = 800
             correct_letters = correct_letters + 1
         else:
             ss = '... {0} / {1}'.format(dt, 60/cpm)
+            tone_frequency = 1200
     all_letters = all_letters + 1
 
     print(letter + ss)
