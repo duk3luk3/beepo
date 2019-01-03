@@ -9,8 +9,8 @@ CODEFILE = 'res/code.json'
 SOUNDFILES = {
         '.': 'oggs/dit.ogg',
         '-': 'oggs/dah.ogg',
-        '?': 'oggs/chime.wav',
-        '!': 'oggs/error.wav'
+        '?': 'oggs/chime_cropped.ogg',
+        '!': 'oggs/error_cropped.ogg'
 }
 
 KOCH_SEQ = 'KMRSUAPTLOWI.NJEF0Y,VG5/Q9ZH38B?427C1D6X'

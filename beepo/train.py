@@ -60,8 +60,10 @@ while True:
         correct_letters = correct_letters + 1
     elif check_result == CheckResult.TOO_SLOW:
         print('{0}... {1} / {2}'.format(letter, dt, 60/cpm))
+        morse.play_sound(sounds, '?')
     else:
         print('{0}!'.format(letter))
+        morse.play_sound(sounds, '!')
 
     if all_letters % 10 == 0:
         corr_perc = correct_letters / all_letters * 100
