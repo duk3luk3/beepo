@@ -22,7 +22,8 @@ build_script:
 
     dir
 
-    dir build
+    dir /S build
 
 artifacts:
 - path: build/
+- path: build/app
