@@ -1,0 +1,10 @@
+version: 1.0.{build}
+
+build_script:
+- sh: >-
+    pip install -r requirements.txt
+    pip install pyinstaller
+    pyinstaller beepo/app.py
+
+artifacts:
+- path: build/
