@@ -1,6 +1,6 @@
 import sys
 import time
-import morse
+from beepo import morse
 
 from functools import partial
 
@@ -79,20 +79,25 @@ class Application(Frame):
         self.pack(fill=BOTH, expand=True)
         self.createWidgets(config)
 
-morse.play_init()
+def main():
+    morse.play_init()
 
-config = {
-        'group_length': 1,
-        'letter_pause': 0.3,
-        'koch_span' : 12,
-        'letter_show' : 4,
-        'cpm' : 15*4,
-        'code_table': morse.load_codetable(),
-        'sounds': morse.load_sounds()
-}
+    config = {
+            'group_length': 1,
+            'letter_pause': 0.3,
+            'koch_span' : 12,
+            'letter_show' : 4,
+            'cpm' : 15*4,
+            'code_table': morse.load_codetable(),
+            'sounds': morse.load_sounds()
+    }
 
 
-root = Tk()
-app = Application(config=config, master=root)
-app.mainloop()
-root.destroy()
+    root = Tk()
+    app = Application(config=config, master=root)
+    app.mainloop()
+    root.destroy()
+
+if __name__ == "__main__":
+    # execute only if run as a script
+    main()

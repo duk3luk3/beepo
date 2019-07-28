@@ -18,7 +18,7 @@ build_script:
 
     pip install pyinstaller
 
-    pyinstaller -F beepo/app.py
+    pyinstaller -F --add-data res;res --add-data oggs;oggs app.py
 
     dir
 
