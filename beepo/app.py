@@ -1,6 +1,6 @@
 import sys
 import time
-from beepo import morse
+import morse
 
 from functools import partial
 
