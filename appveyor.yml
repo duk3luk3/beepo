@@ -1,7 +1,13 @@
 version: 1.0.{build}
 
+environment:
+  matrix:
+   - PYTHON: "C:\\Python37"
+
 build_script:
 - cmd: >-
+    SET PATH=%PYTHON%;%PATH%
+
     pip install -r requirements_appveyor.txt
 
     pip install pyinstaller
