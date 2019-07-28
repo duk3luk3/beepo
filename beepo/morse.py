@@ -1,6 +1,7 @@
 import json
 import pygame
 import random
+import os
 
 from time import sleep
 
@@ -15,9 +16,19 @@ SOUNDFILES = {
 
 KOCH_SEQ = 'KMRSUAPTLOWI.NJEF0Y,VG5/Q9ZH38B?427C1D6X'
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 def load_codetable():
-    with open(CODEFILE) as codefile:
+    with open(os.path.join(resource_path(), CODEFILE) as codefile:
         code = json.load(codefile)
         return code
 
@@ -27,7 +38,7 @@ def play_init():
 
 
 def load_sounds():
-    return {k: pygame.mixer.Sound(f) for k, f in SOUNDFILES.items()}
+    return {k: pygame.mixer.Sound(os.path.join(resource_path(), f)) for k, f in SOUNDFILES.items()}
 
 
 def play_sound(sounds, symbol):
