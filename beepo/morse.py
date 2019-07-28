@@ -37,6 +37,8 @@ def load_codetable():
 
 def play_init():
     pygame.mixer.init()
+    # create screen to make sound work on windows
+    screen=pygame.display.set_mode((400,400),0,32)
 
 
 def load_sounds():
