@@ -18,12 +18,14 @@ build_script:
 
     pip install pyinstaller
 
-    pyinstaller beepo/app.py
+    pyinstaller -F beepo/app.py
 
     dir
 
     dir /S build
 
+    dir /S dist
+
 artifacts:
-- path: build/
-- path: build/app
+- path: dist/
+- path: dist/app
