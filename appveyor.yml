@@ -28,5 +28,5 @@ build_script:
 
 artifacts:
 - path: dist/
-- path: dist/app
+- path: dist/app.exe
 - path: build/

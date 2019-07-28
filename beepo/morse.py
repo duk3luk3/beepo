@@ -28,7 +28,7 @@ def resource_path(relative_path):
 
 
 def load_codetable():
-    with open(os.path.join(resource_path(), CODEFILE) as codefile:
+    with open(resource_path(CODEFILE)) as codefile:
         code = json.load(codefile)
         return code
 
@@ -38,7 +38,7 @@ def play_init():
 
 
 def load_sounds():
-    return {k: pygame.mixer.Sound(os.path.join(resource_path(), f)) for k, f in SOUNDFILES.items()}
+    return {k: pygame.mixer.Sound(resource_path(f)) for k, f in SOUNDFILES.items()}
 
 
 def play_sound(sounds, symbol):
