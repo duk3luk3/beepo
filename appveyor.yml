@@ -6,7 +6,12 @@ environment:
 
 build_script:
 - cmd: >-
-    SET PATH=%PYTHON%;%PATH%
+    SET PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
+
+    echo %PATH%
+
+    python --version
+    pip --version
 
     pip install -r requirements_appveyor.txt
 
