@@ -9,7 +9,7 @@ CODEFILE = 'res/code.json'
 SOUNDFILES = {
         '.': 'oggs/dit.ogg',
         '-': 'oggs/dah.ogg',
-        '?': 'oggs/chime_cropped.ogg',
+        '?': 'oggs/chime.wav',
         '!': 'oggs/error_cropped.ogg'
 }
 
@@ -54,3 +54,16 @@ def koch_letter(letter_span, last=None):
         weights = [weight(i) for i in range(letter_span)]
         return random.choices(seq, weights=weights)[0]
     return random.choice(seq)
+
+def random_letters(letter_span, num_letters, force_letter=None):
+    seq = list(KOCH_SEQ[:letter_span])
+    if force_letter:
+        seq.remove(force_letter)
+
+    choices = random.sample(seq, k=num_letters - len(force_letter))
+
+    choices = choices + [force_letter]
+
+    random.shuffle(choices)
+
+    return choices

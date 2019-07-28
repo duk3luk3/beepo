@@ -4,7 +4,9 @@ import time
 
 from enum import Enum
 
-koch_span = 4
+group_length = 1
+letter_pause = 0.3
+koch_span = 12
 cpm = 15 * 4
 
 morse.play_init()
@@ -23,6 +25,9 @@ letter = None
 correct_letters = 0
 all_letters = 0
 
+streak = 0
+best_streak = 0
+
 
 class CheckResult(Enum):
     OK = 1
@@ -32,7 +37,7 @@ class CheckResult(Enum):
 
 def check_letter(letter, letter_read, dt):
     if letter.lower() == letter_read.lower():
-        if dt <= 60 / cpm:
+        if dt <= (60 / cpm):
             return CheckResult.OK
         else:
             return CheckResult.TOO_SLOW
@@ -41,9 +46,13 @@ def check_letter(letter, letter_read, dt):
 
 
 while True:
-    letter = morse.koch_letter(koch_span, letter)
+    letters = "".join([morse.koch_letter(koch_span, letter) for r in range(group_length)])
 
-    morse.play_code(code_table, sounds, letter)
+
+    for letter in letters:
+        morse.play_code(code_table, sounds, letter)
+        time.sleep(letter_pause)
+
 
     tm = time.time()
 
@@ -51,20 +60,24 @@ while True:
 
     dt = time.time() - tm
 
-    check_result = check_letter(letter, letter_read, dt)
+    check_result = check_letter(letters, letter_read, dt)
 
     all_letters = all_letters + 1
 
     if check_result == CheckResult.OK:
-        print(letter + '.')
+        streak = streak + 1
+        best_streak = max(streak, best_streak)
+        print(letters + '.')
         correct_letters = correct_letters + 1
     elif check_result == CheckResult.TOO_SLOW:
-        print('{0}... {1} / {2}'.format(letter, dt, 60/cpm))
+        streak = 0
+        print('{0}... {1} / {2}'.format(letters, dt, 60/cpm))
         morse.play_sound(sounds, '?')
     else:
-        print('{0}!'.format(letter))
+        streak = 0
+        print('{0}!'.format(letters))
         morse.play_sound(sounds, '!')
 
     if all_letters % 10 == 0:
         corr_perc = correct_letters / all_letters * 100
-        print("Performance: {0}%".format(corr_perc))
+        print("Performance: {0}%, Streak: {1} / {2}".format(corr_perc, streak, best_streak))
